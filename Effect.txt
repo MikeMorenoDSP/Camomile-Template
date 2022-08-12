@@ -1,8 +1,9 @@
-type instrument;
-iolayout 0 2;
+type effect;
+iolayout 2 2;
 code Efct;
-midiin true;
+midiin false;
 compatibility 1.0.7;
+manufacturer MyPlugin;
 param -name Parameter 1 -min 0 -max 1 -default 0.5;
 param -name Parameter 2 -min 0 -max 1 -default 0.5;
 param -name Paramater 3 -min 0 -max 1 -default 0.5;
