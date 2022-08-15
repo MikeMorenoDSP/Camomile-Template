@@ -1,0 +1,59 @@
+#N canvas 220 232 1280 561 12;
+#X text 17 51 Arguments:;
+#X text 37 91 \$2 = Parameter Name;
+#X text 17 111 Example:;
+#X obj 342 414 send \$2;
+#X obj 342 271 change -1e+37;
+#X text 462 243 Receive the parameters' value;
+#X text 442 271 eliminate repeated numbers;
+#X text 342 173 param.get ––––––––––––––––––––––––––––––––––––––––––––––––––
+;
+#X msg 374 329 set \$1, f 7;
+#X obj 374 358 send \$2-r;
+#X text 444 348 Use the "set" message to only change the displayed
+value without any output.;
+#X text 37 71 \$1 = Parameter Number/Index;
+#X text 402 414 Send to patch variable;
+#X obj 12 243 receive \$2-s;
+#X text 102 243 Receive value from GUI;
+#X text 12 173 param.set ––––––––––––––––––––––––––––
+;
+#X text 37 131 gui.link 1 \$0-volume;
+#X obj 902 270 receive \$2-s;
+#X obj 902 324 spigot;
+#X obj 902 353 send \$2;
+#X obj 941 299 receive prototype;
+#X text 142 263 Example: [r \$0-volume-s];
+#X text 484 388 Example: [s \$0-volume-r];
+#X text 442 434 Example: [s \$0-volume];
+#X text 992 373 Example: [s \$0-volume];
+#X text 939 243 Example: [r \$0-volume-s];
+#X text 899 223 // Receive value from GUI;
+#X text 1071 299 Enable prototype mode;
+#X text 899 173 Prototype mode ––––––––––––––––––––––––––––
+;
+#X text 899 193 For enabling testing in Pd without Camomile.;
+#X text 12 193 Set the plug-in's parameter with the GUI.;
+#X text 342 193 Receive the plug-in's parameter and link it to the
+GUI and the patche variable.;
+#X obj 342 300 t f f;
+#X obj 342 243 receive param\$1;
+#X obj 12 277 list prepend \$1;
+#X text 962 353 Send to set variable;
+#X text 17 21 Gui link for Plug Data;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X text 0 0 plugdatainfo <?xml version="1.0" encoding="UTF-8"?> <PlugDataInfo/>
+;
+#X coords 0 1 100 -1 1 1 1;
+#X restore 0 0 graph;
+#X obj 12 312 send param;
+#X connect 4 0 32 0;
+#X connect 8 0 9 0;
+#X connect 13 0 34 0;
+#X connect 17 0 18 0;
+#X connect 18 0 19 0;
+#X connect 20 0 18 1;
+#X connect 32 0 3 0;
+#X connect 32 1 8 0;
+#X connect 33 0 4 0;
+#X connect 34 0 38 0;

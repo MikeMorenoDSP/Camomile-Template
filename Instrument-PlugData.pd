@@ -1,0 +1,115 @@
+#N canvas 74 22 1003 703 12;
+#X declare -path ./abs;
+#X obj 10 10 cnv 15 160 180 empty empty empty 20 12 0 14 #7c7c7c #404040
+0;
+#X obj 36 158 hsl 128 19 0 1 0 0 volume-s volume-r volume 0 -8 0 14
+#000000 #ffffff #ffffff 0 1;
+#X floatatom 328 243 5 -3.40282e+38 3.40282e+38 0 empty - - 0;
+#X floatatom 328 299 5 -3.40282e+38 3.40282e+38 0 empty - - 0;
+#X text 218 157 volume has a range from 0 to 1;
+#X obj 506 300 *~;
+#X obj 574 271 line~;
+#X obj 506 446 dac~ 1 2;
+#X obj 23 328 declare -path ./abs;
+#X text 23 298 // Declare the abstractions folder path;
+#X obj 41 599 tgl 19 0 empty empty Prototype\ Mode 0 -10 0 12 #00ff04
+#000000 #000000 0 1;
+#X obj 41 623 send prototype;
+#X text 23 538 Enable protoype mode to test out the patch without the
+need to load Camomile in your DAW.;
+#X obj 506 32 notein;
+#X obj 506 66 poly 6 1;
+#X text 566 32 Note input;
+#X text 576 66 6 voices \, 1 = voice stealing ON;
+#X obj 506 100 pack f f f;
+#X text 586 100 voice number \, midi-note \, velocity;
+#X obj 506 134 clone -s 1 poly-voice~ 6;
+#X obj 574 247 pack f 20;
+#X text 686 134 clone 6 voices \, with starting voice 1;
+#X obj 506 168 /~ 6;
+#X text 576 446 Audio Output;
+#X text 546 168 Divide amplitude by number of voices;
+#X obj 328 322 s volume-r;
+#X obj 328 219 r volume-s;
+#X text 328 197 Send symbol: volume-s;
+#X text 328 277 Receive symbol: volume-r;
+#X obj 633 358 line~;
+#X obj 633 334 pack f 20;
+#N canvas 257 303 330 314 panning 1;
+#X obj 50 90 sig~ 1;
+#X obj 50 134 -~;
+#X obj 50 168 sqrt~;
+#X obj 12 207 *~;
+#X obj 182 207 *~;
+#X obj 12 31 inlet~;
+#X obj 200 31 inlet~;
+#X obj 12 241 outlet~;
+#X obj 182 241 outlet~;
+#X obj 200 168 sqrt~;
+#X text 12 11 (I1) Input;
+#X text 200 11 (I2) Panning;
+#X text 80 134 Invert;
+#X text 12 261 (O1) Output Left;
+#X text 182 261 (O2) Output Right;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 1;
+#X connect 3 0 7 0;
+#X connect 4 0 8 0;
+#X connect 5 0 3 0;
+#X connect 5 0 4 0;
+#X connect 6 0 1 1;
+#X connect 6 0 9 0;
+#X connect 9 0 4 1;
+#X restore 506 387 pd panning;
+#X text 633 290 P5: Panning (0 to 1);
+#X text 574 203 P4: Volume (0 to 1);
+#X text 644 247 smooth value 20 ms;
+#X text 23 358 Link GUI with plug-in parameter #1 with the variable
+"volume";
+#X obj 36 38 hsl 128 19 0 1 0 0 parameter-1-s parameter-1-r parameter\ 1
+0 -8 0 14 #000000 #ffffff #ffffff 0 1;
+#X obj 36 78 hsl 128 19 0 1 0 0 parameter-2-s parameter-2-r parameter\ 2
+0 -8 0 14 #000000 #ffffff #ffffff 0 1;
+#X obj 36 118 hsl 128 19 0 1 0 0 parameter-3-s parameter-3-r parameter\ 3
+0 -8 0 14 #000000 #ffffff #ffffff 0 1;
+#X obj 36 198 hsl 128 19 0 1 0 0 pan-s pan-r pan 0 -8 0 14 #000000
+#ffffff #ffffff 0 1;
+#X obj 574 223 r volume;
+#X obj 633 310 r pan;
+#X obj 637 581 loadbang;
+#X msg 637 605 \; parameter-1-r 0.5 \; parameter-2-r 0.5 \; parameter-3-r
+0.5 \; volume-r 1 \; pan-r 0.5 \;, f 21;
+#X text 707 581 initiliaze parameters;
+#X obj 42 402 gui.link2 1 parameter-1;
+#X obj 42 426 gui.link2 2 parameter-2;
+#X obj 42 450 gui.link2 3 parameter-3;
+#X obj 42 480 gui.link2 4 volume;
+#X obj 42 504 gui.link2 5 pan;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X text 0 0 plugdatainfo <?xml version="1.0" encoding="UTF-8"?> <PlugDataInfo/>
+;
+#X coords 0 1 100 -1 1 1 1;
+#X restore 0 0 graph;
+#X connect 3 0 25 0;
+#X connect 5 0 31 0;
+#X connect 6 0 5 1;
+#X connect 10 0 11 0;
+#X connect 13 0 14 0;
+#X connect 13 1 14 1;
+#X connect 14 0 17 0;
+#X connect 14 1 17 1;
+#X connect 14 2 17 2;
+#X connect 17 0 19 0;
+#X connect 19 0 22 0;
+#X connect 20 0 6 0;
+#X connect 22 0 5 0;
+#X connect 26 0 2 0;
+#X connect 29 0 31 1;
+#X connect 30 0 29 0;
+#X connect 31 0 7 0;
+#X connect 31 1 7 1;
+#X connect 40 0 20 0;
+#X connect 41 0 30 0;
+#X connect 42 0 43 0;
+#X coords 0 -1 1 1 200 220 2 10 10;

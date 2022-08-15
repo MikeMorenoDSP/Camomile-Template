@@ -40,7 +40,6 @@ value without any output.;
 #X obj 902 284 spigot;
 #X obj 902 313 send \$2;
 #X obj 941 259 receive prototype;
-#X text 962 313 <- Send tu variable;
 #X text 142 223 Example: [r \$0-volume-s];
 #X text 484 378 Example: [s \$0-volume-r];
 #X text 442 494 Example: [s \$0-volume];
@@ -54,6 +53,7 @@ value without any output.;
 #X text 12 153 Set the plug-in's parameter with the GUI.;
 #X text 342 153 Receive the plug-in's parameter and link it to the
 GUI and the patche variable.;
+#X text 962 313 <- Send set variable;
 #X connect 3 0 9 0;
 #X connect 5 0 4 0;
 #X connect 6 0 5 0;
